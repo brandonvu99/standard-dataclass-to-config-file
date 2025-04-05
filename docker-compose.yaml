@@ -1,0 +1,8 @@
+services:
+  standard-dataclass-to-config-file:
+    build:
+      context: ./
+      dockerfile: Dockerfile.tests.unit
+    container_name: standard-dataclass-to-config-file
+    volumes:
+      - ./coverage-reports/unit:/coverage-reports
