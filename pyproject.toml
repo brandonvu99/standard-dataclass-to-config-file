@@ -1,3 +1,14 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "standard_dataclass_to_config_file"
+version = "0.0.0"
+dynamic = ["dependencies"]
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
 [tool.pytest.ini_options]
 addopts = "-ra --cov=standard_dataclass_to_config_file --cov-report html"
 log_cli_level = "DEBUG"
