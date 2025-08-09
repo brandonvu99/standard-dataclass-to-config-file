@@ -40,6 +40,8 @@ class RootConfig:
 
         with open(config_filepath, "r", encoding="utf-16") as f:
             config = yaml_codec.decode(str(yaml.safe_load(f)), cls)
+            with open(config_filepath, "w", encoding="utf16") as f:
+                f.write(yaml_codec.encode(config, cls))
 
             logger.info("Using this config: [%s].", config)
             return config
