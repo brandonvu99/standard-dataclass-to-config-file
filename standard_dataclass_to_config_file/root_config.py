@@ -18,7 +18,9 @@ class RootConfig:
     """
 
     @classmethod
-    def from_config_filepath(cls, config_filepath: Path) -> RootConfig:
+    def from_config_filepath(
+        cls, config_filepath: Path, log_config_contents: bool = False
+    ) -> RootConfig:
         """
         Returns a {RootConfig} from {config_filepath}. If {config_filepath} does not exist, one
         will be created with the default config values.
@@ -35,7 +37,8 @@ class RootConfig:
                 f.write(yaml_codec.encode(default_config, cls))
                 logger.info("Created default config at [%s].", config_filepath)
 
-            logger.info("Using this config: [%s].", default_config)
+            if log_config_contents:
+                logger.info("Using this config: [%s].", default_config)
             return default_config
 
         with open(config_filepath, "r", encoding="utf-16") as f:
@@ -43,5 +46,6 @@ class RootConfig:
             with open(config_filepath, "w", encoding="utf16") as f:
                 f.write(yaml_codec.encode(config, cls))
 
-            logger.info("Using this config: [%s].", config)
+            if log_config_contents:
+                logger.info("Using this config: [%s].", config)
             return config
