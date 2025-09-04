@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import Type, TypeVar
 
 import mashumaro.codecs.yaml as yaml_codec
 import yaml
 
 logger = logging.getLogger(__name__)
+
+
+T = TypeVar("T", bound="RootConfig")
 
 
 class RootConfig:
@@ -19,8 +23,10 @@ class RootConfig:
 
     @classmethod
     def from_config_filepath(
-        cls, config_filepath: Path, log_config_contents: bool = False
-    ) -> RootConfig:
+        cls: Type[T],
+        config_filepath: Path,
+        log_config_contents: bool = False,
+    ) -> T:
         """
         Returns a {RootConfig} from {config_filepath}. If {config_filepath} does not exist, one
         will be created with the default config values.
