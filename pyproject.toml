@@ -1,13 +1,13 @@
-[build-system]
-requires = ["setuptools", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "standard_dataclass_to_config_file"
-version = "0.0.0"
-dynamic = ["dependencies"]
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
+name = "standard-dataclass-to-config-file"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mashumaro>=3.16",
+    "pyyaml>=6.0.2",
+]
 
 [tool.pytest.ini_options]
 addopts = "-ra --cov=standard_dataclass_to_config_file --cov-report html"
@@ -34,7 +34,7 @@ exclude_also = [
 
     # Don't complain about abstract methods, they aren't run:
     "@(abc\\.)?abstractmethod",
-    ]
+]
 ignore_errors = true
 show_missing = true
 
